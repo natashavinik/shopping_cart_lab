@@ -61,9 +61,12 @@ def show_shopping_cart():
     """Display content of shopping cart."""
 
     # TODO: Display the contents of the shopping cart.
-
+    if 'cart' in session:
+        cart = session['cart']
+    else:
+        cart = session['cart'] = {}
     # The logic here will be something like:
-    session['cart']
+    # session['cart']
     # - get the cart dictionary from the session
     cart = session.get("cart", {})
     # - create a list to hold melon objects and a variable to hold the total
@@ -87,7 +90,8 @@ def show_shopping_cart():
     #    - add the Melon object to the list created above
         melon_list.append(melon)
     # - pass the total order cost and the list of Melon objects to the template
-    #
+    # import pdb; pdb.set_trace()
+    print(cart)
     # Make sure your function can also handle the case wherein no cart has
     # been added to the session
 
@@ -119,11 +123,6 @@ def add_to_cart(melon_id):
 
     # Print cart to the terminal for testing purposes
     # print("cart:", cart)
-
-    if cart:
-        message = "Wow"
-    else:
-        message = "Oh no!"
 
     # Show user success message on next page load
     flash("Melon successfully added to cart.")
